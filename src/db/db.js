@@ -2,16 +2,7 @@ import mongoose from "mongoose";
 import { config } from "../config/config.js";
 
 import { initializeApp } from "firebase/app";
-import {
-  getFirestore,
-  // collection,
-  // doc,
-  // addDoc,
-  // getDocs,
-  // updateDoc,
-  // deleteDoc,
-  // Firestore,
-} from "firebase/firestore";
+import { getFirestore } from "firebase/firestore";
 
 export const firebaseConfig = {
   apiKey: process.env.FIREBASE_API_KEY,
