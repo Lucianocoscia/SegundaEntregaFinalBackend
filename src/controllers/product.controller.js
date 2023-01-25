@@ -1,6 +1,7 @@
 // import { ProductMongoDao } from "../daos/productMongo.dao.js";
 import { Product as productModel } from "../model/product.model.js";
 import { Daos } from "../daos/index.js";
+import { doc } from "firebase/firestore";
 
 const Product = new Daos.ProductDao(productModel); // instanciamos la clase en el controller para poder realizar los metodos
 
@@ -10,7 +11,7 @@ const getAllProducts = async (req, res) => {
 
     res.json(response);
   } catch (error) {
-    throw new Error("error getting all products");
+    res.json(error);
   }
 };
 

@@ -14,10 +14,12 @@ const getAllCarts = async (req, res) => {
 
 const createCart = async (req, res) => {
   try {
-    const newCart = await Cart.create();
-    res.json({ status: "Created", data: newCart });
+    const { timestamp, products } = req.body;
+    await Cart.create({ timestamp, products });
+    res.json({ status: "Created", data: await Cart.getAll() });
   } catch (error) {
-    throw new Error("Error al listar todos los carts");
+    console.log("Error al crear carrito", error);
+    return error;
   }
 };
 
@@ -37,9 +39,9 @@ const updateCart = async (req, res) => {
   try {
     const { id } = req.params;
 
-    const { products } = req.body;
+    const { products, timestamp } = req.body;
 
-    const cartToUpdate = await Cart.update({ products }, id);
+    const cartToUpdate = await Cart.update({ products, timestamp }, id);
 
     res.json({ status: "Updated", data: cartToUpdate });
   } catch (error) {
